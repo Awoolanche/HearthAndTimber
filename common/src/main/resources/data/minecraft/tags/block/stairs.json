@@ -24,6 +24,10 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingle_stairs",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:larch_shingle_stairs",
       "required": false
     },
@@ -62,6 +66,17 @@
     {
       "id": "hearth_and_timber:arolla_pine_shingle_stairs",
       "required": false
-    }
+    },
+    "hearth_and_timber:thatch_stairs",
+    "hearth_and_timber:weathered_thatch_stairs",
+    "hearth_and_timber:drying_thatch_stairs",
+    "hearth_and_timber:aged_thatch_stairs",
+    "hearth_and_timber:waxed_thatch_stairs",
+    "hearth_and_timber:waxed_weathered_thatch_stairs",
+    "hearth_and_timber:waxed_drying_thatch_stairs",
+    "hearth_and_timber:waxed_aged_thatch_stairs",
+    "hearth_and_timber:terracotta_shingle_stairs",
+    "hearth_and_timber:patchwork_shingle_stairs",
+    "hearth_and_timber:timber_frame_stairs"
   ]
 }

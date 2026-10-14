@@ -54,6 +54,10 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingle_slab",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:larch_shingle_slab",
       "required": false
     },
@@ -87,6 +91,10 @@
     },
     {
       "id": "hearth_and_timber:swamp_cypress_shingle_slab",
+      "required": false
+    },
+    {
+      "id": "hearth_and_timber:arolla_pine_shingle_slab",
       "required": false
     }
   ]

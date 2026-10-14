@@ -50,6 +50,10 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_beam",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:larch_beam",
       "required": false
     },
@@ -86,7 +90,7 @@
       "required": false
     },
     {
-      "id": "alpinewhispers:arolla_pine_beam",
+      "id": "hearth_and_timber:arolla_pine_beam",
       "required": false
     }
   ]

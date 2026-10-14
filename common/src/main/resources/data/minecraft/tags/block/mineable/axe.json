@@ -226,7 +226,15 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingles",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:aspen_shingle_stairs",
+      "required": false
+    },
+    {
+      "id": "hearth_and_timber:cactus_shingle_stairs",
       "required": false
     },
     {
@@ -234,7 +242,15 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingle_slab",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:aspen_beam",
+      "required": false
+    },
+    {
+      "id": "hearth_and_timber:cactus_beam",
       "required": false
     },
     {
@@ -242,7 +258,15 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_support",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:aspen_pillar",
+      "required": false
+    },
+    {
+      "id": "hearth_and_timber:cactus_pillar",
       "required": false
     },
     {
@@ -250,11 +274,23 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_railing",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:aspen_window_casing",
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_window_casing",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:aspen_board",
+      "required": false
+    },
+    {
+      "id": "hearth_and_timber:cactus_board",
       "required": false
     },
     {
@@ -611,6 +647,10 @@
     },
     {
       "id": "hearth_and_timber:arolla_pine_shingle_stairs",
+      "required": false
+    },
+    {
+      "id": "hearth_and_timber:arolla_pine_beam",
       "required": false
     }
   ]

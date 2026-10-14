@@ -17,251 +17,244 @@ public class TabRegistry {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(HearthAndTimber.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
+    private static final boolean ALPINEWHISPERS_LOADED = Platform.isModLoaded("alpinewhispers");
+    private static final boolean BEACHPARTY_LOADED = Platform.isModLoaded("beachparty");
+    private static final boolean MEADOW_LOADED = Platform.isModLoaded("meadow");
+    private static final boolean VINERY_LOADED = Platform.isModLoaded("vinery");
+    private static final boolean BLOOMINGNATURE_LOADED = Platform.isModLoaded("bloomingnature");
+
     public static final RegistrySupplier<CreativeModeTab> HEARTH_AND_TIMBER_TAB = CREATIVE_MODE_TABS.register("hearth_and_timber", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
             .icon(() -> new ItemStack(ObjectRegistry.SLIDING_BARN_DOOR.get()))
             .title(Component.translatable("creativetab.hearth_and_timber.tab"))
             .displayItems((parameters, output) -> {
-                output.accept(ObjectRegistry.FRAMEWORK_ITEM.get());
-                output.accept(ObjectRegistry.TIMBER_BASE_SKIRT.get());
-                output.accept(ObjectRegistry.TIMBER_BASE_TRIM.get());
-                output.accept(ObjectRegistry.TIMBER_FOUNDATION.get());
-                output.accept(ObjectRegistry.TIMBER_FRAME_STAIRS.get());
-                output.accept(ObjectRegistry.TIMBER_FRAME.get());
-                output.accept(ObjectRegistry.TIMBER_GRID_FRAME.get());
-                output.accept(ObjectRegistry.TIMBER_DIAGONAL_FRAME.get());
-                output.accept(ObjectRegistry.TIMBER_CROSS_FRAME.get());
-                output.accept(ObjectRegistry.OAK_BEAM.get());
-                output.accept(ObjectRegistry.SPRUCE_BEAM.get());
-                output.accept(ObjectRegistry.BIRCH_BEAM.get());
-                output.accept(ObjectRegistry.JUNGLE_BEAM.get());
-                output.accept(ObjectRegistry.ACACIA_BEAM.get());
-                output.accept(ObjectRegistry.DARK_OAK_BEAM.get());
-                output.accept(ObjectRegistry.MANGROVE_BEAM.get());
-                output.accept(ObjectRegistry.CHERRY_BEAM.get());
-                output.accept(ObjectRegistry.PALE_OAK_BEAM.get());
-                output.accept(ObjectRegistry.OAK_BOARD.get());
-                output.accept(ObjectRegistry.SPRUCE_BOARD.get());
-                output.accept(ObjectRegistry.BIRCH_BOARD.get());
-                output.accept(ObjectRegistry.JUNGLE_BOARD.get());
-                output.accept(ObjectRegistry.ACACIA_BOARD.get());
-                output.accept(ObjectRegistry.DARK_OAK_BOARD.get());
-                output.accept(ObjectRegistry.MANGROVE_BOARD.get());
-                output.accept(ObjectRegistry.CHERRY_BOARD.get());
-                output.accept(ObjectRegistry.PALE_OAK_BOARD.get());
-                output.accept(ObjectRegistry.OAK_RAILING.get());
-                output.accept(ObjectRegistry.SPRUCE_RAILING.get());
-                output.accept(ObjectRegistry.BIRCH_RAILING.get());
-                output.accept(ObjectRegistry.JUNGLE_RAILING.get());
-                output.accept(ObjectRegistry.ACACIA_RAILING.get());
-                output.accept(ObjectRegistry.DARK_OAK_RAILING.get());
-                output.accept(ObjectRegistry.MANGROVE_RAILING.get());
-                output.accept(ObjectRegistry.CHERRY_RAILING.get());
-                output.accept(ObjectRegistry.PALE_OAK_RAILING.get());
-                output.accept(ObjectRegistry.OAK_SUPPORT.get());
-                output.accept(ObjectRegistry.SPRUCE_SUPPORT.get());
-                output.accept(ObjectRegistry.BIRCH_SUPPORT.get());
-                output.accept(ObjectRegistry.JUNGLE_SUPPORT.get());
-                output.accept(ObjectRegistry.ACACIA_SUPPORT.get());
-                output.accept(ObjectRegistry.DARK_OAK_SUPPORT.get());
-                output.accept(ObjectRegistry.MANGROVE_SUPPORT.get());
-                output.accept(ObjectRegistry.CHERRY_SUPPORT.get());
-                output.accept(ObjectRegistry.PALE_OAK_SUPPORT.get());
-                output.accept(ObjectRegistry.OAK_PILLAR.get());
-                output.accept(ObjectRegistry.SPRUCE_PILLAR.get());
-                output.accept(ObjectRegistry.BIRCH_PILLAR.get());
-                output.accept(ObjectRegistry.JUNGLE_PILLAR.get());
-                output.accept(ObjectRegistry.ACACIA_PILLAR.get());
-                output.accept(ObjectRegistry.DARK_OAK_PILLAR.get());
-                output.accept(ObjectRegistry.MANGROVE_PILLAR.get());
-                output.accept(ObjectRegistry.CHERRY_PILLAR.get());
-                output.accept(ObjectRegistry.PALE_OAK_PILLAR.get());
-                output.accept(ObjectRegistry.OAK_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.SPRUCE_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.BIRCH_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.JUNGLE_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.ACACIA_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.DARK_OAK_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.MANGROVE_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.CHERRY_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.PALE_OAK_WINDOW_CASING.get());
-                output.accept(ObjectRegistry.OAK_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.SPRUCE_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.BIRCH_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.JUNGLE_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.ACACIA_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.DARK_OAK_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.MANGROVE_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.CHERRY_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.PALE_OAK_WINDOW_PANE.get());
-                output.accept(ObjectRegistry.OAK_WINDOW.get());
-                output.accept(ObjectRegistry.SPRUCE_WINDOW.get());
-                output.accept(ObjectRegistry.BIRCH_WINDOW.get());
-                output.accept(ObjectRegistry.JUNGLE_WINDOW.get());
-                output.accept(ObjectRegistry.ACACIA_WINDOW.get());
-                output.accept(ObjectRegistry.DARK_OAK_WINDOW.get());
-                output.accept(ObjectRegistry.MANGROVE_WINDOW.get());
-                output.accept(ObjectRegistry.CHERRY_WINDOW.get());
-                output.accept(ObjectRegistry.PALE_OAK_WINDOW.get());
-                output.accept(ObjectRegistry.OAK_SHINGLES.get());
-                output.accept(ObjectRegistry.SPRUCE_SHINGLES.get());
-                output.accept(ObjectRegistry.BIRCH_SHINGLES.get());
-                output.accept(ObjectRegistry.JUNGLE_SHINGLES.get());
-                output.accept(ObjectRegistry.ACACIA_SHINGLES.get());
-                output.accept(ObjectRegistry.DARK_OAK_SHINGLES.get());
-                output.accept(ObjectRegistry.MANGROVE_SHINGLES.get());
-                output.accept(ObjectRegistry.CHERRY_SHINGLES.get());
-                output.accept(ObjectRegistry.PALE_OAK_SHINGLES.get());
-                output.accept(ObjectRegistry.OAK_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.SPRUCE_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.BIRCH_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.JUNGLE_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.ACACIA_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.DARK_OAK_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.MANGROVE_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.CHERRY_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.PALE_OAK_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.OAK_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.SPRUCE_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.BIRCH_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.JUNGLE_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.ACACIA_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.DARK_OAK_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.MANGROVE_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.CHERRY_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.PALE_OAK_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.WHITE_PLASTER.get());
-                output.accept(ObjectRegistry.LIGHT_GRAY_PLASTER.get());
-                output.accept(ObjectRegistry.GRAY_PLASTER.get());
-                output.accept(ObjectRegistry.BLACK_PLASTER.get());
-                output.accept(ObjectRegistry.BROWN_PLASTER.get());
-                output.accept(ObjectRegistry.RED_PLASTER.get());
-                output.accept(ObjectRegistry.ORANGE_PLASTER.get());
-                output.accept(ObjectRegistry.YELLOW_PLASTER.get());
-                output.accept(ObjectRegistry.LIME_PLASTER.get());
-                output.accept(ObjectRegistry.GREEN_PLASTER.get());
-                output.accept(ObjectRegistry.CYAN_PLASTER.get());
-                output.accept(ObjectRegistry.LIGHT_BLUE_PLASTER.get());
-                output.accept(ObjectRegistry.BLUE_PLASTER.get());
-                output.accept(ObjectRegistry.PURPLE_PLASTER.get());
-                output.accept(ObjectRegistry.MAGENTA_PLASTER.get());
-                output.accept(ObjectRegistry.PINK_PLASTER.get());
-                output.accept(ObjectRegistry.QUICKLIME.get());
-                output.accept(ObjectRegistry.COVERED_RUBBLESTONE.get());
-                output.accept(ObjectRegistry.COVERED_RUBBLESTONE_STAIRS.get());
-                output.accept(ObjectRegistry.COVERED_RUBBLESTONE_SLAB.get());
-                output.accept(ObjectRegistry.COVERED_RUBBLESTONE_WALL.get());
-                output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE.get());
-                output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE_STAIRS.get());
-                output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE_SLAB.get());
-                output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE_WALL.get());
-                output.accept(ObjectRegistry.POINTED_RUBBLESTONE.get());
-                output.accept(ObjectRegistry.POINTED_RRUBBLESTONE_STAIRS.get());
-                output.accept(ObjectRegistry.POINTED_RRUBBLESTONE_SLAB.get());
-                output.accept(ObjectRegistry.POINTED_RRUBBLESTONE_WALL.get());
-                output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE.get());
-                output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE_STAIRS.get());
-                output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE_SLAB.get());
-                output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE_WALL.get());
-                output.accept(ObjectRegistry.SPLITSTONE.get());
-                output.accept(ObjectRegistry.SPLITSTONE_STAIRS.get());
-                output.accept(ObjectRegistry.SPLITSTONE_SLAB.get());
-                output.accept(ObjectRegistry.MOSSY_SPLITSTONE.get());
-                output.accept(ObjectRegistry.MOSSY_SPLITSTONE_STAIRS.get());
-                output.accept(ObjectRegistry.MOSSY_SPLITSTONE_SLAB.get());
-                output.accept(ObjectRegistry.SPLITSTONE_PATH.get());
-                output.accept(ObjectRegistry.MOSSY_SPLITSTONE_PATH.get());
-                output.accept(ObjectRegistry.TERRACOTTA_SHINGLES.get());
-                output.accept(ObjectRegistry.TERRACOTTA_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.TERRACOTTA_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.PATCHWORK_SHINGLES.get());
-                output.accept(ObjectRegistry.PATCHWORK_SHINGLE_STAIRS.get());
-                output.accept(ObjectRegistry.PATCHWORK_SHINGLE_SLAB.get());
-                output.accept(ObjectRegistry.THATCH.get());
-                output.accept(ObjectRegistry.THATCH_STAIRS.get());
-                output.accept(ObjectRegistry.THATCH_SLAB.get());
-                output.accept(ObjectRegistry.WEATHERED_THATCH.get());
-                output.accept(ObjectRegistry.WEATHERED_THATCH_STAIRS.get());
-                output.accept(ObjectRegistry.WEATHERED_THATCH_SLAB.get());
-                output.accept(ObjectRegistry.DRYING_THATCH.get());
-                output.accept(ObjectRegistry.DRYING_THATCH_STAIRS.get());
-                output.accept(ObjectRegistry.DRYING_THATCH_SLAB.get());
-                output.accept(ObjectRegistry.AGED_THATCH.get());
-                output.accept(ObjectRegistry.AGED_THATCH_STAIRS.get());
-                output.accept(ObjectRegistry.AGED_THATCH_SLAB.get());
-                output.accept(ObjectRegistry.SLIDING_BARN_DOOR.get());
-                output.accept(ObjectRegistry.SLIDING_HAYLOFT_DOOR.get());
-                output.accept(ObjectRegistry.SLIDING_STABLE_DOOR.get());
+                acceptMain(output);
+                acceptCompat(output);
             })
             .build());
 
-    public static RegistrySupplier<CreativeModeTab> HEARTH_AND_TIMBER_COMPAT_LAYER_TAB;
-
     static {
-        boolean alpinewhispersLoaded = Platform.isModLoaded("alpinewhispers");
-        boolean beachpartyLoaded = Platform.isModLoaded("beachparty");
-        boolean meadowLoaded = Platform.isModLoaded("meadow");
-        boolean vineryLoaded = Platform.isModLoaded("vinery");
-        boolean bloomingNatureLoaded = Platform.isModLoaded("bloomingnature");
-
-        if (alpinewhispersLoaded || beachpartyLoaded || meadowLoaded || vineryLoaded || bloomingNatureLoaded) {
-            HEARTH_AND_TIMBER_COMPAT_LAYER_TAB = CREATIVE_MODE_TABS.register("hearth_and_timber_compat", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-                    .icon(() -> new ItemStack(ObjectRegistry.SLIDING_STABLE_DOOR.get()))
-                    .title(Component.translatable("creativetab.hearth_and_timber.compat"))
-                    .displayItems((parameters, output) -> {
-                        String[] alpinewhispersWoodTypeOrder = {
-                                "arolla_pine"
-                        };
-                        String[] beachpartyWoodTypeOrder = {
-                                "palm"
-                        };
-                        String[] meadowWoodTypeOrder = {
-                                "pine"
-                        };
-                        String[] vineryWoodTypeOrder = {
-                                "dark_cherry"
-                        };
-                        String[] bloomingNatureWoodTypeOrder = {
-                                "aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress"
-                        };
-
-                        String[] compatWoodTypeOrder = buildCompatWoodTypeOrder(
-                                alpinewhispersLoaded,
-                                beachpartyLoaded,
-                                meadowLoaded,
-                                vineryLoaded,
-                                bloomingNatureLoaded,
-                                alpinewhispersWoodTypeOrder,
-                                beachpartyWoodTypeOrder,
-                                meadowWoodTypeOrder,
-                                vineryWoodTypeOrder,
-                                bloomingNatureWoodTypeOrder
-                        );
-
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SHINGLES, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SHINGLE_STAIRS, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SHINGLE_SLAB, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_BEAMS, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SUPPORTS, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_PILLARS, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_RAILINGS, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_WINDOW_CASINGS, woodType, output);
-                        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_BOARDS, woodType, output);
-                    })
-                    .build());
-        }
-
         CREATIVE_MODE_TABS.register();
     }
 
-    private static String[] buildCompatWoodTypeOrder(boolean alpinewhispersLoaded, boolean beachpartyLoaded, boolean meadowLoaded, boolean vineryLoaded, boolean bloomingNatureLoaded, String[] alpinewhispersWoodTypeOrder, String[] beachpartyWoodTypeOrder, String[] meadowWoodTypeOrder, String[] vineryWoodTypeOrder, String[] bloomingNatureWoodTypeOrder) {
+    public static boolean hasCompat() {
+        return ALPINEWHISPERS_LOADED || BEACHPARTY_LOADED || MEADOW_LOADED || VINERY_LOADED || BLOOMINGNATURE_LOADED;
+    }
+
+    public static void acceptMain(CreativeModeTab.Output output) {
+        output.accept(ObjectRegistry.FRAMEWORK_ITEM.get());
+        output.accept(ObjectRegistry.TIMBER_BASE_SKIRT.get());
+        output.accept(ObjectRegistry.TIMBER_BASE_TRIM.get());
+        output.accept(ObjectRegistry.TIMBER_FOUNDATION.get());
+        output.accept(ObjectRegistry.TIMBER_FRAME_STAIRS.get());
+        output.accept(ObjectRegistry.TIMBER_FRAME.get());
+        output.accept(ObjectRegistry.TIMBER_GRID_FRAME.get());
+        output.accept(ObjectRegistry.TIMBER_DIAGONAL_FRAME.get());
+        output.accept(ObjectRegistry.TIMBER_CROSS_FRAME.get());
+        output.accept(ObjectRegistry.OAK_BEAM.get());
+        output.accept(ObjectRegistry.SPRUCE_BEAM.get());
+        output.accept(ObjectRegistry.BIRCH_BEAM.get());
+        output.accept(ObjectRegistry.JUNGLE_BEAM.get());
+        output.accept(ObjectRegistry.ACACIA_BEAM.get());
+        output.accept(ObjectRegistry.DARK_OAK_BEAM.get());
+        output.accept(ObjectRegistry.MANGROVE_BEAM.get());
+        output.accept(ObjectRegistry.CHERRY_BEAM.get());
+        output.accept(ObjectRegistry.PALE_OAK_BEAM.get());
+        output.accept(ObjectRegistry.OAK_BOARD.get());
+        output.accept(ObjectRegistry.SPRUCE_BOARD.get());
+        output.accept(ObjectRegistry.BIRCH_BOARD.get());
+        output.accept(ObjectRegistry.JUNGLE_BOARD.get());
+        output.accept(ObjectRegistry.ACACIA_BOARD.get());
+        output.accept(ObjectRegistry.DARK_OAK_BOARD.get());
+        output.accept(ObjectRegistry.MANGROVE_BOARD.get());
+        output.accept(ObjectRegistry.CHERRY_BOARD.get());
+        output.accept(ObjectRegistry.PALE_OAK_BOARD.get());
+        output.accept(ObjectRegistry.OAK_RAILING.get());
+        output.accept(ObjectRegistry.SPRUCE_RAILING.get());
+        output.accept(ObjectRegistry.BIRCH_RAILING.get());
+        output.accept(ObjectRegistry.JUNGLE_RAILING.get());
+        output.accept(ObjectRegistry.ACACIA_RAILING.get());
+        output.accept(ObjectRegistry.DARK_OAK_RAILING.get());
+        output.accept(ObjectRegistry.MANGROVE_RAILING.get());
+        output.accept(ObjectRegistry.CHERRY_RAILING.get());
+        output.accept(ObjectRegistry.PALE_OAK_RAILING.get());
+        output.accept(ObjectRegistry.OAK_SUPPORT.get());
+        output.accept(ObjectRegistry.SPRUCE_SUPPORT.get());
+        output.accept(ObjectRegistry.BIRCH_SUPPORT.get());
+        output.accept(ObjectRegistry.JUNGLE_SUPPORT.get());
+        output.accept(ObjectRegistry.ACACIA_SUPPORT.get());
+        output.accept(ObjectRegistry.DARK_OAK_SUPPORT.get());
+        output.accept(ObjectRegistry.MANGROVE_SUPPORT.get());
+        output.accept(ObjectRegistry.CHERRY_SUPPORT.get());
+        output.accept(ObjectRegistry.PALE_OAK_SUPPORT.get());
+        output.accept(ObjectRegistry.OAK_PILLAR.get());
+        output.accept(ObjectRegistry.SPRUCE_PILLAR.get());
+        output.accept(ObjectRegistry.BIRCH_PILLAR.get());
+        output.accept(ObjectRegistry.JUNGLE_PILLAR.get());
+        output.accept(ObjectRegistry.ACACIA_PILLAR.get());
+        output.accept(ObjectRegistry.DARK_OAK_PILLAR.get());
+        output.accept(ObjectRegistry.MANGROVE_PILLAR.get());
+        output.accept(ObjectRegistry.CHERRY_PILLAR.get());
+        output.accept(ObjectRegistry.PALE_OAK_PILLAR.get());
+        output.accept(ObjectRegistry.OAK_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.SPRUCE_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.BIRCH_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.JUNGLE_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.ACACIA_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.DARK_OAK_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.MANGROVE_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.CHERRY_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.PALE_OAK_WINDOW_CASING.get());
+        output.accept(ObjectRegistry.OAK_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.SPRUCE_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.BIRCH_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.JUNGLE_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.ACACIA_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.DARK_OAK_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.MANGROVE_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.CHERRY_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.PALE_OAK_WINDOW_PANE.get());
+        output.accept(ObjectRegistry.OAK_WINDOW.get());
+        output.accept(ObjectRegistry.SPRUCE_WINDOW.get());
+        output.accept(ObjectRegistry.BIRCH_WINDOW.get());
+        output.accept(ObjectRegistry.JUNGLE_WINDOW.get());
+        output.accept(ObjectRegistry.ACACIA_WINDOW.get());
+        output.accept(ObjectRegistry.DARK_OAK_WINDOW.get());
+        output.accept(ObjectRegistry.MANGROVE_WINDOW.get());
+        output.accept(ObjectRegistry.CHERRY_WINDOW.get());
+        output.accept(ObjectRegistry.PALE_OAK_WINDOW.get());
+        output.accept(ObjectRegistry.OAK_SHINGLES.get());
+        output.accept(ObjectRegistry.SPRUCE_SHINGLES.get());
+        output.accept(ObjectRegistry.BIRCH_SHINGLES.get());
+        output.accept(ObjectRegistry.JUNGLE_SHINGLES.get());
+        output.accept(ObjectRegistry.ACACIA_SHINGLES.get());
+        output.accept(ObjectRegistry.DARK_OAK_SHINGLES.get());
+        output.accept(ObjectRegistry.MANGROVE_SHINGLES.get());
+        output.accept(ObjectRegistry.CHERRY_SHINGLES.get());
+        output.accept(ObjectRegistry.PALE_OAK_SHINGLES.get());
+        output.accept(ObjectRegistry.OAK_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.SPRUCE_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.BIRCH_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.JUNGLE_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.ACACIA_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.DARK_OAK_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.MANGROVE_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.CHERRY_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.PALE_OAK_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.OAK_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.SPRUCE_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.BIRCH_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.JUNGLE_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.ACACIA_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.DARK_OAK_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.MANGROVE_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.CHERRY_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.PALE_OAK_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.WHITE_PLASTER.get());
+        output.accept(ObjectRegistry.LIGHT_GRAY_PLASTER.get());
+        output.accept(ObjectRegistry.GRAY_PLASTER.get());
+        output.accept(ObjectRegistry.BLACK_PLASTER.get());
+        output.accept(ObjectRegistry.BROWN_PLASTER.get());
+        output.accept(ObjectRegistry.RED_PLASTER.get());
+        output.accept(ObjectRegistry.ORANGE_PLASTER.get());
+        output.accept(ObjectRegistry.YELLOW_PLASTER.get());
+        output.accept(ObjectRegistry.LIME_PLASTER.get());
+        output.accept(ObjectRegistry.GREEN_PLASTER.get());
+        output.accept(ObjectRegistry.CYAN_PLASTER.get());
+        output.accept(ObjectRegistry.LIGHT_BLUE_PLASTER.get());
+        output.accept(ObjectRegistry.BLUE_PLASTER.get());
+        output.accept(ObjectRegistry.PURPLE_PLASTER.get());
+        output.accept(ObjectRegistry.MAGENTA_PLASTER.get());
+        output.accept(ObjectRegistry.PINK_PLASTER.get());
+        output.accept(ObjectRegistry.QUICKLIME.get());
+        output.accept(ObjectRegistry.COVERED_RUBBLESTONE.get());
+        output.accept(ObjectRegistry.COVERED_RUBBLESTONE_STAIRS.get());
+        output.accept(ObjectRegistry.COVERED_RUBBLESTONE_SLAB.get());
+        output.accept(ObjectRegistry.COVERED_RUBBLESTONE_WALL.get());
+        output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE.get());
+        output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE_STAIRS.get());
+        output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE_SLAB.get());
+        output.accept(ObjectRegistry.PLASTERED_RUBBLESTONE_WALL.get());
+        output.accept(ObjectRegistry.POINTED_RUBBLESTONE.get());
+        output.accept(ObjectRegistry.POINTED_RRUBBLESTONE_STAIRS.get());
+        output.accept(ObjectRegistry.POINTED_RRUBBLESTONE_SLAB.get());
+        output.accept(ObjectRegistry.POINTED_RRUBBLESTONE_WALL.get());
+        output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE.get());
+        output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE_STAIRS.get());
+        output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE_SLAB.get());
+        output.accept(ObjectRegistry.GROUTLESS_RUBBLESTONE_WALL.get());
+        output.accept(ObjectRegistry.SPLITSTONE.get());
+        output.accept(ObjectRegistry.SPLITSTONE_STAIRS.get());
+        output.accept(ObjectRegistry.SPLITSTONE_SLAB.get());
+        output.accept(ObjectRegistry.MOSSY_SPLITSTONE.get());
+        output.accept(ObjectRegistry.MOSSY_SPLITSTONE_STAIRS.get());
+        output.accept(ObjectRegistry.MOSSY_SPLITSTONE_SLAB.get());
+        output.accept(ObjectRegistry.SPLITSTONE_PATH.get());
+        output.accept(ObjectRegistry.MOSSY_SPLITSTONE_PATH.get());
+        output.accept(ObjectRegistry.TERRACOTTA_SHINGLES.get());
+        output.accept(ObjectRegistry.TERRACOTTA_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.TERRACOTTA_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.PATCHWORK_SHINGLES.get());
+        output.accept(ObjectRegistry.PATCHWORK_SHINGLE_STAIRS.get());
+        output.accept(ObjectRegistry.PATCHWORK_SHINGLE_SLAB.get());
+        output.accept(ObjectRegistry.THATCH.get());
+        output.accept(ObjectRegistry.THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.THATCH_SLAB.get());
+        output.accept(ObjectRegistry.WEATHERED_THATCH.get());
+        output.accept(ObjectRegistry.WEATHERED_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.WEATHERED_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.DRYING_THATCH.get());
+        output.accept(ObjectRegistry.DRYING_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.DRYING_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.AGED_THATCH.get());
+        output.accept(ObjectRegistry.AGED_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.AGED_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.WAXED_THATCH.get());
+        output.accept(ObjectRegistry.WAXED_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.WAXED_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.WAXED_WEATHERED_THATCH.get());
+        output.accept(ObjectRegistry.WAXED_WEATHERED_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.WAXED_WEATHERED_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.WAXED_DRYING_THATCH.get());
+        output.accept(ObjectRegistry.WAXED_DRYING_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.WAXED_DRYING_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.WAXED_AGED_THATCH.get());
+        output.accept(ObjectRegistry.WAXED_AGED_THATCH_STAIRS.get());
+        output.accept(ObjectRegistry.WAXED_AGED_THATCH_SLAB.get());
+        output.accept(ObjectRegistry.SLIDING_BARN_DOOR.get());
+        output.accept(ObjectRegistry.SLIDING_HAYLOFT_DOOR.get());
+        output.accept(ObjectRegistry.SLIDING_STABLE_DOOR.get());
+    }
+
+    public static void acceptCompat(CreativeModeTab.Output output) {
+        String[] compatWoodTypeOrder = compatWoodTypeOrder();
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SHINGLES, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SHINGLE_STAIRS, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SHINGLE_SLAB, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_BEAMS, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_SUPPORTS, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_PILLARS, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_RAILINGS, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_WINDOW_CASINGS, woodType, output);
+        for (String woodType : compatWoodTypeOrder) acceptIfPresent(ObjectRegistry.COMPAT_BOARDS, woodType, output);
+    }
+
+    public static ItemStack compatIcon() {
+        for (String woodType : compatWoodTypeOrder()) {
+            RegistrySupplier<?> supplier = ObjectRegistry.COMPAT_SHINGLES.get(woodType);
+            if (supplier != null && supplier.isPresent() && supplier.get() instanceof ItemLike itemLike) {
+                return new ItemStack(itemLike);
+            }
+        }
+        return new ItemStack(ObjectRegistry.SLIDING_STABLE_DOOR.get());
+    }
+
+    private static String[] compatWoodTypeOrder() {
         String[] result = new String[0];
-
-        if (alpinewhispersLoaded) result = concat(result, alpinewhispersWoodTypeOrder);
-        if (beachpartyLoaded) result = concat(result, beachpartyWoodTypeOrder);
-        if (meadowLoaded) result = concat(result, meadowWoodTypeOrder);
-        if (vineryLoaded) result = concat(result, vineryWoodTypeOrder);
-        if (bloomingNatureLoaded) result = concat(result, bloomingNatureWoodTypeOrder);
-
+        if (ALPINEWHISPERS_LOADED) result = concat(result, new String[]{"arolla_pine"});
+        if (BEACHPARTY_LOADED) result = concat(result, new String[]{"palm"});
+        if (MEADOW_LOADED) result = concat(result, new String[]{"pine"});
+        if (VINERY_LOADED) result = concat(result, new String[]{"dark_cherry"});
+        if (BLOOMINGNATURE_LOADED) result = concat(result, new String[]{"aspen", "larch", "baobab", "cypress", "ebony", "chestnut", "fan_palm", "fir", "swamp_oak", "swamp_cypress", "cactus"});
         return result;
     }
 

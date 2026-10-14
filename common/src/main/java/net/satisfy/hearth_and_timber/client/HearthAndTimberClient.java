@@ -6,26 +6,49 @@ import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.satisfy.hearth_and_timber.client.renderer.block.SlidingDoorRenderer;
 import net.satisfy.hearth_and_timber.client.renderer.block.WindowCasingRenderer;
 import net.satisfy.hearth_and_timber.client.renderer.model.SlidingBarnDoorModel;
 import net.satisfy.hearth_and_timber.client.renderer.model.SlidingHayloftDoorModel;
 import net.satisfy.hearth_and_timber.client.renderer.model.SlidingStableDoorModel;
 import net.satisfy.hearth_and_timber.core.registry.EntityTypeRegistry;
+import net.satisfy.hearth_and_timber.core.registry.TabRegistry;
 
 import static net.satisfy.hearth_and_timber.core.registry.ObjectRegistry.*;
+import net.satisfy.foundation.client.creative.CreativeSideTabs;
+import net.satisfy.foundation.client.mimic.MimicModels;
 
 @Environment(EnvType.CLIENT)
 public class HearthAndTimberClient {
+    private static boolean mimicModelsRegistered;
+
 
     public static void onInitializeClient() {
         RenderTypeRegistry.register(RenderType.cutout(), SPRUCE_WINDOW_CASING.get(), OAK_WINDOW_PANE.get(), SPRUCE_WINDOW_PANE.get(), BIRCH_WINDOW_PANE.get(), JUNGLE_WINDOW_PANE.get(), ACACIA_WINDOW_PANE.get(), DARK_OAK_WINDOW_PANE.get(), MANGROVE_WINDOW_PANE.get(), CHERRY_WINDOW_PANE.get(), PALE_OAK_WINDOW_PANE.get(), OAK_WINDOW.get(), SPRUCE_WINDOW.get(), BIRCH_WINDOW.get(), JUNGLE_WINDOW.get(), ACACIA_WINDOW.get(), DARK_OAK_WINDOW.get(), MANGROVE_WINDOW.get(), CHERRY_WINDOW.get(), PALE_OAK_WINDOW.get());
         RenderTypeRegistry.register(RenderType.translucent(), FRAMEWORK.get(), TIMBER_FRAME.get(), TIMBER_GRID_FRAME.get(), TIMBER_CROSS_FRAME.get(), TIMBER_DIAGONAL_FRAME.get(), TIMBER_FRAME_STAIRS.get(), TIMBER_FOUNDATION.get(), TIMBER_BASE_TRIM.get(), TIMBER_BASE_SKIRT.get());
         registerBlockEntityRenderer();
+
+        if (TabRegistry.hasCompat()) {
+            CreativeSideTabs.register(TabRegistry.HEARTH_AND_TIMBER_TAB.getKey(),
+                    new CreativeSideTabs.SideTab(Component.translatable("creativetab.hearth_and_timber.side.main"), () -> new ItemStack(SLIDING_BARN_DOOR.get()), TabRegistry::acceptMain),
+                    new CreativeSideTabs.SideTab(Component.translatable("creativetab.hearth_and_timber.side.compat"), TabRegistry::compatIcon, TabRegistry::acceptCompat));
+        }
     }
 
     public static void preInitClient() {
         registerEntityModelLayer();
+        registerMimicModels();
+    }
+
+    private static void registerMimicModels() {
+        if (mimicModelsRegistered) {
+            return;
+        }
+        mimicModelsRegistered = true;
+        MimicModels.retexture(MimicModels.ALL, TIMBER_FOUNDATION, TIMBER_BASE_TRIM, TIMBER_BASE_SKIRT);
+        MimicModels.retexture(MimicModels.placeholder(MimicModels.Mode.UNDERLAY), TIMBER_FRAME, TIMBER_GRID_FRAME, TIMBER_CROSS_FRAME, TIMBER_DIAGONAL_FRAME, TIMBER_FRAME_STAIRS);
     }
 
     public static void registerEntityModelLayer() {

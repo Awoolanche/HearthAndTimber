@@ -15,6 +15,10 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingles",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:larch_shingles",
       "required": false
     },

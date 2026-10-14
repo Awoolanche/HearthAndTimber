@@ -64,8 +64,8 @@ public interface IWeatheringThatch {
         }
 
         if (stack.is(Items.WHEAT)) {
-            Block base = ObjectRegistry.THATCH.get();
-            if (base != null) {
+            Block base = getVariant(state.getBlock(), 0);
+            if (base != null && base != state.getBlock()) {
                 BlockState target = copyMatching(state, base.defaultBlockState());
                 if (!level.isClientSide) {
                     level.setBlock(pos, target, 2);
@@ -76,9 +76,22 @@ public interface IWeatheringThatch {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
+        if (stack.is(Items.HONEYCOMB)) {
+            Block waxed = getWaxed(state.getBlock());
+            if (waxed != null) {
+                BlockState target = copyMatching(state, waxed.defaultBlockState());
+                if (!level.isClientSide) {
+                    level.setBlock(pos, target, 11);
+                    level.levelEvent(player, 3003, pos, 0);
+                    stack.consume(1, player);
+                }
+                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            }
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
         if (stack.getItem() instanceof HoeItem) {
-            Block current = state.getBlock();
-            Block previous = getPrevious(current);
+            Block previous = getPrevious(state.getBlock());
             if (previous != null) {
                 BlockState target = copyMatching(state, previous.defaultBlockState());
                 if (!level.isClientSide) level.setBlock(pos, target, 2);
@@ -101,13 +114,46 @@ public interface IWeatheringThatch {
         return state.setValue(property, property.getValueClass().cast(value));
     }
 
-    private static Block getPrevious(Block block) {
-        if (block == ObjectRegistry.WEATHERED_THATCH.get()) return ObjectRegistry.THATCH.get();
-        if (block == ObjectRegistry.DRYING_THATCH.get()) return ObjectRegistry.WEATHERED_THATCH.get();
-        if (block == ObjectRegistry.AGED_THATCH.get()) return ObjectRegistry.DRYING_THATCH.get();
+    private static Block[][] variants() {
+        return new Block[][]{
+                {ObjectRegistry.THATCH.get(), ObjectRegistry.WEATHERED_THATCH.get(), ObjectRegistry.DRYING_THATCH.get(), ObjectRegistry.AGED_THATCH.get()},
+                {ObjectRegistry.THATCH_STAIRS.get(), ObjectRegistry.WEATHERED_THATCH_STAIRS.get(), ObjectRegistry.DRYING_THATCH_STAIRS.get(), ObjectRegistry.AGED_THATCH_STAIRS.get()},
+                {ObjectRegistry.THATCH_SLAB.get(), ObjectRegistry.WEATHERED_THATCH_SLAB.get(), ObjectRegistry.DRYING_THATCH_SLAB.get(), ObjectRegistry.AGED_THATCH_SLAB.get()}
+        };
+    }
+
+    private static Block[][] waxedVariants() {
+        return new Block[][]{
+                {ObjectRegistry.WAXED_THATCH.get(), ObjectRegistry.WAXED_WEATHERED_THATCH.get(), ObjectRegistry.WAXED_DRYING_THATCH.get(), ObjectRegistry.WAXED_AGED_THATCH.get()},
+                {ObjectRegistry.WAXED_THATCH_STAIRS.get(), ObjectRegistry.WAXED_WEATHERED_THATCH_STAIRS.get(), ObjectRegistry.WAXED_DRYING_THATCH_STAIRS.get(), ObjectRegistry.WAXED_AGED_THATCH_STAIRS.get()},
+                {ObjectRegistry.WAXED_THATCH_SLAB.get(), ObjectRegistry.WAXED_WEATHERED_THATCH_SLAB.get(), ObjectRegistry.WAXED_DRYING_THATCH_SLAB.get(), ObjectRegistry.WAXED_AGED_THATCH_SLAB.get()}
+        };
+    }
+
+    private static int[] indexOf(Block block) {
+        Block[][] variants = variants();
+        for (int shape = 0; shape < variants.length; shape++) {
+            for (int age = 0; age < variants[shape].length; age++) {
+                if (variants[shape][age] == block) return new int[]{shape, age};
+            }
+        }
         return null;
     }
 
+    private static Block getVariant(Block block, int age) {
+        int[] index = indexOf(block);
+        return index == null ? null : variants()[index[0]][age];
+    }
+
+    private static Block getPrevious(Block block) {
+        int[] index = indexOf(block);
+        return index == null || index[1] == 0 ? null : variants()[index[0]][index[1] - 1];
+    }
+
+    private static Block getWaxed(Block block) {
+        int[] index = indexOf(block);
+        return index == null ? null : waxedVariants()[index[0]][index[1]];
+    }
 
     default void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> list, TooltipFlag flag) {
         int beige = 0xF5DEB3;

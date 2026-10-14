@@ -6,6 +6,16 @@
     "hearth_and_timber:plastered_rubblestone_slab",
     "hearth_and_timber:splitstone_slab",
     "hearth_and_timber:mossy_splitstone_slab",
-    "hearth_and_timber:groutless_rubblestone_slab"
+    "hearth_and_timber:groutless_rubblestone_slab",
+    "hearth_and_timber:thatch_slab",
+    "hearth_and_timber:weathered_thatch_slab",
+    "hearth_and_timber:drying_thatch_slab",
+    "hearth_and_timber:aged_thatch_slab",
+    "hearth_and_timber:waxed_thatch_slab",
+    "hearth_and_timber:waxed_weathered_thatch_slab",
+    "hearth_and_timber:waxed_drying_thatch_slab",
+    "hearth_and_timber:waxed_aged_thatch_slab",
+    "hearth_and_timber:terracotta_shingle_slab",
+    "hearth_and_timber:patchwork_shingle_slab"
   ]
 }

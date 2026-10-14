@@ -35,6 +35,18 @@ repositories {
 dependencies {
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
     modApi "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
+    include(modImplementation("net.satisfy.foundation:foundation-neoforge:${rootProject.foundation_version}") { transitive = false })
+
+    modLocalRuntime("maven.modrinth:vanillabackport:rUSWdBok")
+    modLocalRuntime("maven.modrinth:platform:v7P0nBi2")
+    modLocalRuntime("maven.modrinth:lets-do-bloomingnature:EKgADGat")
+    modLocalRuntime("maven.modrinth:biolith:EAjbdreT")
+    modLocalRuntime("maven.modrinth:cloth-config:izKINKFg")
+    modLocalRuntime("maven.modrinth:lets-do-alpine-whispers:2x7mdiTd")
+    modLocalRuntime("maven.modrinth:lets-do-beachparty:HN4rzKRl")
+    modLocalRuntime("maven.modrinth:curios:yohfFbgD")
+    modLocalRuntime("maven.modrinth:lets-do-meadow:SdTfMLxH")
+    modLocalRuntime("maven.modrinth:lets-do-vinery:DLINXOWN")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     compileOnly "curse.maven:every-compat-628539:7272773"
@@ -43,7 +55,10 @@ dependencies {
 
 processResources {
     inputs.property "version", project.version
-    filesMatching("META-INF/neoforge.mods.toml") { expand version: project.version }
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand "version": project.version
+    }
 }
 
 shadowJar {

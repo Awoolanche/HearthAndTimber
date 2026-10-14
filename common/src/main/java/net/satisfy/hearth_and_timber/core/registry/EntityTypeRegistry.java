@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfy.hearth_and_timber.HearthAndTimber;
 import net.satisfy.hearth_and_timber.core.block.entity.SlidingDoorBlockEntity;
-import net.satisfy.hearth_and_timber.core.block.entity.TimberFrameBlockEntity;
 import net.satisfy.hearth_and_timber.core.block.entity.WindowCasingBlockEntity;
 
 import java.util.ArrayList;
@@ -36,13 +35,14 @@ import static net.satisfy.hearth_and_timber.core.registry.ObjectRegistry.TIMBER_
 import static net.satisfy.hearth_and_timber.core.registry.ObjectRegistry.TIMBER_FRAME;
 import static net.satisfy.hearth_and_timber.core.registry.ObjectRegistry.TIMBER_FRAME_STAIRS;
 import static net.satisfy.hearth_and_timber.core.registry.ObjectRegistry.TIMBER_GRID_FRAME;
+import net.satisfy.foundation.block.mimic.MimicBlockEntity;
 
 public final class EntityTypeRegistry {
     private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(HearthAndTimber.MOD_ID, Registries.BLOCK_ENTITY_TYPE);
     private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPE_REGISTRAR = BLOCK_ENTITY_TYPES.getRegistrar();
 
     public static final RegistrySupplier<BlockEntityType<SlidingDoorBlockEntity>> SLIDING_DOOR_BLOCK_ENTITY = registerBlockEntity("sliding_door", () -> BlockEntityType.Builder.of(SlidingDoorBlockEntity::new, SLIDING_HAYLOFT_DOOR.get(), SLIDING_BARN_DOOR.get(), SLIDING_STABLE_DOOR.get()).build(null));
-    public static final RegistrySupplier<BlockEntityType<TimberFrameBlockEntity>> TIMBER_FRAME_BLOCK_ENTITY = registerBlockEntity("timber_frame", () -> BlockEntityType.Builder.of(TimberFrameBlockEntity::new, TIMBER_FOUNDATION.get(), TIMBER_BASE_TRIM.get(), TIMBER_BASE_SKIRT.get(), TIMBER_FRAME.get(), TIMBER_GRID_FRAME.get(), TIMBER_CROSS_FRAME.get(), TIMBER_DIAGONAL_FRAME.get(), TIMBER_FRAME_STAIRS.get()).build(null));
+    public static final RegistrySupplier<BlockEntityType<MimicBlockEntity>> TIMBER_FRAME_BLOCK_ENTITY = registerBlockEntity("timber_frame", () -> BlockEntityType.Builder.of((pos, state) -> new MimicBlockEntity(EntityTypeRegistry.TIMBER_FRAME_BLOCK_ENTITY.get(), pos, state), TIMBER_FOUNDATION.get(), TIMBER_BASE_TRIM.get(), TIMBER_BASE_SKIRT.get(), TIMBER_FRAME.get(), TIMBER_GRID_FRAME.get(), TIMBER_CROSS_FRAME.get(), TIMBER_DIAGONAL_FRAME.get(), TIMBER_FRAME_STAIRS.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<WindowCasingBlockEntity>> WINDOW_CASING_BLOCK_ENTITY = registerBlockEntity("window_casing", () -> {
         List<Block> windowCasings = new ArrayList<>(List.of(
                 OAK_WINDOW_CASING.get(), SPRUCE_WINDOW_CASING.get(), BIRCH_WINDOW_CASING.get(), JUNGLE_WINDOW_CASING.get(),

@@ -7,15 +7,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -37,15 +34,18 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.satisfy.hearth_and_timber.core.block.entity.TimberFrameBlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import net.satisfy.foundation.block.mimic.MimicBlock;
+import net.satisfy.foundation.block.mimic.MimicBlockEntity;
+import net.satisfy.hearth_and_timber.core.registry.EntityTypeRegistry;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 public class TimberFrameBlock extends Block implements EntityBlock, SimpleWaterloggedBlock {
     public static final MapCodec<TimberFrameBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(BlockState.CODEC.fieldOf("base_state").forGetter(block -> block.baseState), propertiesCodec()).apply(instance, TimberFrameBlock::new));
     public static final BooleanProperty WATERLOGGED = BooleanProperty.create("waterlogged");
-    public static final BooleanProperty APPLIED = BooleanProperty.create("applied");
+    public static final BooleanProperty APPLIED = MimicBlock.APPLIED;
     private final Block base;
     protected final BlockState baseState;
 
@@ -102,71 +102,17 @@ public class TimberFrameBlock extends Block implements EntityBlock, SimpleWaterl
     }
 
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TimberFrameBlockEntity(pos, state);
-    }
-
-    private static boolean canAccept(BlockGetter level, BlockPos pos, BlockState candidate) {
-        if (candidate == null || candidate.isAir()) return false;
-        if (candidate.getBlock() instanceof EntityBlock) return false;
-        if (candidate.getRenderShape() != RenderShape.MODEL) return false;
-        return Block.isShapeFullBlock(candidate.getShape(level, pos));
+        return new MimicBlockEntity(EntityTypeRegistry.TIMBER_FRAME_BLOCK_ENTITY.get(), pos, state);
     }
 
     @Override
-    public @NotNull ItemInteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult hitResult) {
-        if (itemStack.getItem() instanceof PickaxeItem) {
-            if (!state.getValue(APPLIED)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-            if (level.isClientSide) return ItemInteractionResult.SUCCESS;
-            BlockEntity blockEntity = level.getBlockEntity(blockPos);
-            if (blockEntity instanceof TimberFrameBlockEntity timberFrameBlockEntity) {
-                BlockState mimicState = timberFrameBlockEntity.getMimicState();
-                if (mimicState != null && !mimicState.isAir()) {
-                    Block.popResource(level, blockPos, new ItemStack(mimicState.getBlock()));
-                    timberFrameBlockEntity.setMimicState(null);
-                    BlockState newState = state.setValue(APPLIED, false);
-                    level.setBlock(blockPos, newState, 3);
-                    level.sendBlockUpdated(blockPos, state, newState, Block.UPDATE_ALL);
-                    if (level instanceof ServerLevel serverLevel) {
-                        serverLevel.levelEvent(2001, blockPos, Block.getId(mimicState));
-                    }
-                }
-            }
-            return ItemInteractionResult.CONSUME;
-        }
-
-        if (state.getValue(APPLIED)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        if (!(itemStack.getItem() instanceof BlockItem blockItem)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
-        BlockState mimicState = blockItem.getBlock().defaultBlockState();
-        if (!canAccept(level, blockPos, mimicState)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        if (level.isClientSide) return ItemInteractionResult.SUCCESS;
-
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (blockEntity instanceof TimberFrameBlockEntity timberFrameBlockEntity) {
-            timberFrameBlockEntity.setMimicState(mimicState);
-            BlockState newState = state.setValue(APPLIED, true);
-            level.setBlock(blockPos, newState, 3);
-            level.sendBlockUpdated(blockPos, state, newState, Block.UPDATE_ALL);
-            if (!player.isCreative()) {
-                itemStack.shrink(1);
-            }
-            if (level instanceof ServerLevel serverLevel) {
-                serverLevel.levelEvent(2001, blockPos, Block.getId(mimicState));
-            }
-        }
-        return ItemInteractionResult.CONSUME;
+    public @NotNull ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return MimicBlock.use(stack, state, level, pos, player, mimic -> true);
     }
 
-    public @NotNull BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity instanceof TimberFrameBlockEntity timberFrameBlockEntity) {
-            BlockState mimic = timberFrameBlockEntity.getMimicState();
-            if (mimic != null && !mimic.isAir() && !player.isCreative()) {
-                Block.popResource(level, pos, new ItemStack(mimic.getBlock()));
-            }
-        }
-        super.playerWillDestroy(level, pos, state, player);
-        return state;
+    @Override
+    protected @NotNull List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
+        return MimicBlock.addDrops(super.getDrops(state, builder), builder);
     }
 
     public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {

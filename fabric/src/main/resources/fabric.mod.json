@@ -8,10 +8,12 @@
     "satisfy"
   ],
   "contact": {
-    "issues": "https://github.com/satisfyu/Let-s-Do-Hub",
-    "sources": "https://github.com/satisfyu/HearthAndTimber"
+    "homepage": "https://www.lets-do.ch",
+    "wiki": "https://lets-do.ch/wiki/hearth-and-timber/",
+    "sources": "https://github.com/Let-s-Do-Collection/HearthAndTimber",
+    "issues": "https://github.com/satisfyu/Let-s-Do-Hub"
   },
-  "license": "custom",
+  "license": "Custom",
   "icon": "pack.png",
   "environment": "*",
   "entrypoints": {
@@ -26,11 +28,13 @@
     "hearthandtimber-fabric.mixins.json"
   ],
   "depends": {
+    "fabricloader": ">=0.16.14",
     "fabric-api": "*",
-    "minecraft": ">=1.20",
-    "architectury": ">=9.0.8"
+    "minecraft": "~1.21.1",
+    "architectury": ">=13.0.8",
+    "foundation": ">=1.0.6"
   },
   "suggests": {
-    "Farm & Charm": ">=1.0.0"
+    "farm_and_charm": ">=1.0.0"
   }
 }

@@ -54,6 +54,10 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingle_stairs",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:larch_shingle_stairs",
       "required": false
     },

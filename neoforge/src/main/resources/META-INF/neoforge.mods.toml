@@ -3,36 +3,46 @@ loaderVersion = "[4,)"
 license = "Custom"
 issueTrackerURL = "https://github.com/satisfyu/Let-s-Do-Hub"
 
-[[mixins]]
-config = "hearthandtimber-neoforge.mixins.json"
-
 [[mods]]
 modId = "hearth_and_timber"
 version = "${version}"
 displayName = "[Let's Do] Hearth & Timber"
 authors = "satisfy"
+logoFile = "pack.png"
+displayURL = "https://www.lets-do.ch"
 description = '''
 Bring warmth and rustic charm to your world with Hearth & Timber! Discover timbered walls, sturdy barn doors, rustic beams, and countryside paths to create the perfect homestead.
+
+Website: https://www.lets-do.ch
+Wiki: https://lets-do.ch/wiki/hearth-and-timber/
+Source: https://github.com/Let-s-Do-Collection/HearthAndTimber
+Issues: https://github.com/satisfyu/Let-s-Do-Hub
 '''
-logoFile = "pack.png"
 
 [[dependencies.hearth_and_timber]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.0,)"
+versionRange = "[21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.hearth_and_timber]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21,)"
+versionRange = "[1.21.1]"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.hearth_and_timber]]
 modId = "architectury"
 type = "required"
-versionRange = "[9.0.8,)"
+versionRange = "[13.0.8,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.hearth_and_timber]]
+modId = "foundation"
+type = "required"
+versionRange = "[1.0.6,)"
 ordering = "AFTER"
 side = "BOTH"

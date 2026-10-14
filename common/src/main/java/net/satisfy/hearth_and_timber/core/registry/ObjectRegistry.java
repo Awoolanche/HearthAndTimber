@@ -227,8 +227,8 @@ public final class ObjectRegistry {
     public static final RegistrySupplier<Block> PINK_PLASTER = registerWithItem("pink_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_TERRACOTTA).mapColor(MapColor.COLOR_PINK)));
     public static final RegistrySupplier<Block> PURPLE_PLASTER = registerWithItem("purple_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PURPLE_TERRACOTTA).mapColor(MapColor.COLOR_PURPLE)));
     public static final RegistrySupplier<Block> RED_PLASTER = registerWithItem("red_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TERRACOTTA).mapColor(MapColor.COLOR_RED)));
-    public static final RegistrySupplier<Block> YELLOW_PLASTER = registerWithItem("yellow_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.YELLOW_TERRACOTTA).mapColor(MapColor.COLOR_RED)));
-    public static final RegistrySupplier<Block> WHITE_PLASTER = registerWithItem("white_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_TERRACOTTA).mapColor(MapColor.COLOR_RED)));
+    public static final RegistrySupplier<Block> YELLOW_PLASTER = registerWithItem("yellow_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.YELLOW_TERRACOTTA).mapColor(MapColor.COLOR_YELLOW)));
+    public static final RegistrySupplier<Block> WHITE_PLASTER = registerWithItem("white_plaster", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_TERRACOTTA).mapColor(MapColor.SNOW)));
 
     public static final RegistrySupplier<Block> THATCH = registerWithItem("thatch", () -> new WeatheringThatchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK).randomTicks(), () -> ObjectRegistry.WEATHERED_THATCH.get()));
     public static final RegistrySupplier<Block> WEATHERED_THATCH = registerWithItem("weathered_thatch", () -> new WeatheringThatchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK).randomTicks(), () -> ObjectRegistry.DRYING_THATCH.get()));
@@ -295,7 +295,8 @@ public final class ObjectRegistry {
                     new CompatWood("bloomingnature", "fan_palm", true),
                     new CompatWood("bloomingnature", "fir", true),
                     new CompatWood("bloomingnature", "swamp_oak", true),
-                    new CompatWood("bloomingnature", "swamp_cypress", true)
+                    new CompatWood("bloomingnature", "swamp_cypress", true),
+                    new CompatWood("bloomingnature", "cactus", true)
             });
         }
 

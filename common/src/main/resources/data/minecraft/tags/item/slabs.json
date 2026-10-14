@@ -42,6 +42,10 @@
       "required": false
     },
     {
+      "id": "hearth_and_timber:cactus_shingle_slab",
+      "required": false
+    },
+    {
       "id": "hearth_and_timber:larch_shingle_slab",
       "required": false
     },
@@ -76,6 +80,16 @@
     {
       "id": "hearth_and_timber:swamp_cypress_shingle_slab",
       "required": false
-    }
+    },
+    "hearth_and_timber:thatch_slab",
+    "hearth_and_timber:weathered_thatch_slab",
+    "hearth_and_timber:drying_thatch_slab",
+    "hearth_and_timber:aged_thatch_slab",
+    "hearth_and_timber:waxed_thatch_slab",
+    "hearth_and_timber:waxed_weathered_thatch_slab",
+    "hearth_and_timber:waxed_drying_thatch_slab",
+    "hearth_and_timber:waxed_aged_thatch_slab",
+    "hearth_and_timber:terracotta_shingle_slab",
+    "hearth_and_timber:patchwork_shingle_slab"
   ]
 }
